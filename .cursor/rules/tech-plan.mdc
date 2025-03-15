@@ -1,0 +1,73 @@
+---
+description: Tech and Structure Plan for the Project
+globs: 
+alwaysApply: false
+---
+# Galactic Log – Tech Plan 🚀
+
+## 📌 Overview
+**Galactic Log** is a cross-platform personal logbook for tracking work, thoughts, and context shifts. Built with **Go (Wails) & Svelte**, it runs **fully offline**, with local encryption for privacy.
+
+## ⚙️ Tech Stack
+- **Backend:** Go (Wails), SQLite (encrypted), GORM/Bun ORM  
+- **Frontend:** Svelte, TypeScript, TailwindCSS  
+- **Storage:** Local SQLite, optional AES-256 encryption  
+- **IPC:** Wails bindings for API communication  
+- **Packaging:** Wails (cross-platform: Windows, macOS, Linux)  
+- **Dev Environment:** Cursor IDE  
+
+## 📎 Project Structure
+```
+/galactic-log
+|│── /frontend       # Svelte + TS + TailwindCSS UI
+|│── /backend        # Go Wails API + SQLite storage
+|│── /internal       # Core business logic
+|│── /assets         # Icons, fonts, etc.
+|│── main.go         # Wails entry point
+|│── TECH_PLAN.md    # This file
+|│── CURSOR_RULES.mdc # Cursor IDE coding & commit conventions
+|│── README.md       # Project overview
+```
+
+## 🛄 API Design (Backend ↔ Frontend)
+| Method  | Endpoint       | Description          |
+|---------|---------------|----------------------|
+| `GET`   | `/logs`       | Fetch all logs      |
+| `GET`   | `/logs/:id`   | Fetch a single log  |
+| `POST`  | `/logs`       | Create a new log    |
+| `PUT`   | `/logs/:id`   | Update a log        |
+| `DELETE`| `/logs/:id`   | Delete a log        |
+
+## 🛠 Development Workflow
+1. **Setup Wails Backend** (`go run main.go`)  
+2. **Develop Frontend** (`npm run dev` in `/frontend`)  
+3. **Bind API Calls** (Wails bindings from Go to Svelte)  
+4. **Test & Debug** (`wails doctor`, `wails build`)  
+5. **Package & Release** (`wails build -platform windows/macos/linux`)  
+
+## 🔐 Storage & Encryption
+- **Default Storage:** SQLite  
+- **Encryption Option:** AES-256 for local logs  
+- **Backup:** Export logs as JSON  
+
+## 🎯 MVP Features
+- [x] CRUD log entries  
+- [x] Markdown/rich text support  
+- [x] Local storage (SQLite)  
+- [x] Context-aware UI for logs  
+- [ ] Encrypted storage (AES-256)  
+- [ ] Work session reflections  
+- [ ] Themed UI (LCARS mode?)  
+
+## 🛡️ Commit, Code Clarity & Style
+- See @'./cursor/rules/code-clarity.mdc' for detailed coding, commit, and style guidelines.  
+- Code should follow **clarity-first principles**: simple, readable, and maintainable.  
+- Use **self-documenting code**: meaningful variable and function names.  
+- **Keep functions small and focused**—each function should do one thing well.  
+- Use **consistent error handling** with structured logging.  
+- Follow **Cursor IDE commit conventions**: meaningful commit messages, atomic changes, and clear documentation.  
+
+---
+
+🚀 *"Captain’s Log, Stardate: Every Damn Day."*
+
