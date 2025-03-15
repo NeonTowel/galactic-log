@@ -1,6 +1,6 @@
 ---
 description: Tech and Structure Plan for the Project
-globs: 
+globs: *.md, *.go, *.svelte, *.ts, *.json, *.js
 alwaysApply: false
 ---
 # Galactic Log – Tech Plan 🚀
